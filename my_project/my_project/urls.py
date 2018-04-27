@@ -22,9 +22,13 @@ from my_app import views
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
-router.register(r'branch_detail', views.BranchDetailViewSet)
+#router.register(r'branch_detail', views.BranchDetailView)
 
 urlpatterns = [
         url(r'^', include(router.urls)),
-        url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+        url(r'^branch_detail/(?P<format>[a-z0-9]+)$', views.BranchDetailView.as_view(), name='branch-detail'),
+        url(r'^branch_detail$', views.BranchDetailView.as_view(), name='branch-detail'),
         ]
+
+
+#url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
