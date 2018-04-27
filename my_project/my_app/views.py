@@ -43,6 +43,7 @@ class BranchDetailView(generics.RetrieveAPIView):
     """
     API endpoint that allows groups to be viewed or edited.
     """
+    lookup_field = 'ifsc'
     queryset = BranchDetail.objects.all()
     serializer_class = BranchDetailSerializer
 

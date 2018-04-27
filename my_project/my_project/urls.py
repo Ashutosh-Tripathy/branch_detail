@@ -26,8 +26,8 @@ router.register(r'groups', views.GroupViewSet)
 
 urlpatterns = [
         url(r'^', include(router.urls)),
-        url(r'^branch_detail/(?P<format>[a-z0-9]+)$', views.BranchDetailView.as_view(), name='branch-detail'),
-        url(r'^branch_detail$', views.BranchDetailView.as_view(), name='branch-detail'),
+        url(r'^branch_detail/(?P<ifsc>[-\w]+)$', views.BranchDetailView.as_view(), name='branch-detail'),
+        url(r'^2branch_detail$', views.BranchDetailView.as_view(), name='branch-detail-by-param'),
         ]
 
 
