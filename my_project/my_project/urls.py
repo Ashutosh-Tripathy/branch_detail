@@ -20,12 +20,11 @@ from my_app import views
 #from django.core.urlresolvers import reverse
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
+#router.register(r'users', views.UserViewSet)
+#router.register(r'groups', views.GroupViewSet)
 #router.register(r'branch_detail', views.BranchDetailView)
 
 urlpatterns = [
-        url(r'^', include(router.urls)),
         url(r'^branch_detail/(?P<pk>[-\w]+)$', views.BranchDetailView.as_view(), name='branch-detail'),
         url(r'^branch_detail$', views.BranchListView.as_view(), name='branch-detail-by-param'),
         ]
