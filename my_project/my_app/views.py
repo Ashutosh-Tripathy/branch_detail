@@ -43,15 +43,21 @@ class BranchDetailView(generics.RetrieveAPIView):
     """
     API endpoint that allows groups to be viewed or edited.
     """
-    lookup_field = 'ifsc'
-    queryset = BranchDetail.objects.all()
+    #lookup_field = 'ifsc'
+    #ifsc = ifsc.upper()
+    #queryset = BranchDetail.objects.all()
+    #serializer_class = BranchDetailSerializer
+
+    #lookup_field = 'ifsc'
     serializer_class = BranchDetailSerializer
 
+    def get_queryset(self):
+        lookup_field = 'pk'
+        pk = self.kwargs['pk'] 
+        return BranchDetail.objects.filter(pk__iexact=pk)
 
 
-
-
-class BranchDetailView(generics.ListAPIView):
+class BranchListView(generics.ListAPIView):
     """
     API endpoint that allows groups to be viewed or edited.
     """
@@ -74,4 +80,6 @@ class BranchDetailView(generics.ListAPIView):
             # return HttpResponse(status=400)
             # content = {'please move along': 'nothing to see here'}
             # return Response(data="object not found", status=status.HTTP_400_BAD_REQUEST)
-        return BranchDetail.objects.filter(bank_name=bank_name, city=city)
+        else:
+            city, bank_name = city.upper(), bank_name.upper()
+            return BranchDetail.objects.filter(bank_name=bank_name, city=city)
